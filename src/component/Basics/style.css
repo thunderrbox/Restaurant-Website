@@ -1,0 +1,1493 @@
+/* =========================================================
+   GOOGLE FONT IMPORT
+   👉 "Cormorant Garamond" — luxury serif for titles
+   👉 "Outfit" — geometric sans-serif for all UI text
+========================================================= */
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;0,700;1,300;1,500&family=Outfit:wght@300;400;500;600&display=swap");
+
+/* =========================================================
+   ROOT VARIABLES
+   🎨 Dark olive-black page + per-card saffron/sienna/sage/teal/rose accents
+   Every element has enough contrast to be clearly visible
+========================================================= */
+:root {
+  /* ── BACKGROUNDS ────────────────────────────────────── */
+  --bg-deep: #1a1600;
+  /* 👉 Very dark olive-black page */
+  --bg-card: #221e00;
+  /* 👉 Dark amber-black card surface */
+  --bg-card-alt: #2c2700;
+  /* 👉 Slightly lighter footer strip */
+  --bg-overlay: rgba(26, 22, 0, 0.8);
+
+  /* ── PRIMARY ACCENT: SAFFRON GOLD ──────────────────── */
+  --gold: #f0b030;
+  /* 👉 Bright saffron gold */
+  --gold-light: #ffd95a;
+  /* 👉 Vivid yellow gold */
+  --gold-muted: #c48a18;
+  /* 👉 Mid gold — borders, outlines */
+  --gold-bright: #ffe070;
+  /* 👉 Brightest gold for hover ends */
+
+  /* ── ORIGINAL 5 SECONDARY ACCENTS ──────────────────── */
+  /* 👉 Each accent has a base + light (gradient end) variant */
+  --sienna: #c2420e;
+  /* 👉 Burnt sienna — warm orange-red */
+  --sienna-light: #e8622a;
+  --sage: #5a7a52;
+  /* 👉 Sage green — earthy olive green */
+  --sage-light: #7aaa6e;
+  --teal: #1a6b6e;
+  /* 👉 Deep teal — cool blue-green */
+  --teal-light: #28a0a4;
+  --rose: #9e3054;
+  /* 👉 Deep rose — warm berry pink */
+  --rose-light: #d44070;
+
+  /* ── 👉 EXTENDED ACCENT PALETTE (slots 6–40) ────────────
+     15 new unique colors added so every card from 1–40
+     has a visually distinct accent. No two adjacent cards
+     share the same hue family.
+     Naming convention: descriptive name + -light variant  */
+  --amber: #d4780a;
+  --amber-light: #f09820;
+  /* 👉 Deep amber */
+  --forest: #2d6040;
+  --forest-light: #4a8858;
+  /* 👉 Forest green */
+  --indigo: #3a3882;
+  --indigo-light: #5858b8;
+  /* 👉 Deep indigo */
+  --crimson: #8b1a2a;
+  --crimson-light: #c02840;
+  /* 👉 Dark wine red */
+  --olive: #6b6820;
+  --olive-light: #9a9830;
+  /* 👉 Olive gold */
+  --copper: #b85520;
+  --copper-light: #e07838;
+  /* 👉 Copper orange */
+  --pine: #1e5c38;
+  --pine-light: #308050;
+  /* 👉 Pine green */
+  --violet: #5c2878;
+  --violet-light: #8840a8;
+  /* 👉 Deep violet */
+  --burgundy: #6e1428;
+  --burgundy-light: #a02040;
+  /* 👉 Burgundy red */
+  --mustard: #a88010;
+  --mustard-light: #d4a820;
+  /* 👉 Mustard yellow */
+  --slate: #2a4868;
+  --slate-light: #3c6898;
+  /* 👉 Slate blue */
+  --rust: #a03818;
+  --rust-light: #c85828;
+  /* 👉 Rust brown-red */
+  --moss: #486030;
+  --moss-light: #689048;
+  /* 👉 Moss green */
+  --plum: #6a2050;
+  --plum-light: #9a3878;
+  /* 👉 Dark plum */
+  --ochre: #c07010;
+  --ochre-light: #e89830;
+  /* 👉 Ochre amber */
+
+  /* ── TEXT ───────────────────────────────────────────── */
+  --text-bright: #fff8e0;
+  /* 👉 Warm near-white — main headings */
+  --text-warm: #f0dfa0;
+  /* 👉 Warm yellow-cream — body text */
+  --text-mid: #d4b870;
+  /* 👉 Muted amber-yellow */
+  --text-dim: #a08840;
+  /* 👉 Dim amber */
+  --text-faint: #5a4e20;
+  /* 👉 Very dim — decorative bg elements */
+
+  /* ── LAYOUT ─────────────────────────────────────────── */
+  --radius: 14px;
+  --transition: 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+  --shadow: 0 8px 40px rgba(0, 0, 0, 0.6),
+    0 2px 8px rgba(0, 0, 0, 0.4);
+  --shadow-hover: 0 32px 70px rgba(0, 0, 0, 0.7),
+    0 0 0 1.5px var(--card-color, var(--gold));
+
+  /* =========================================================
+     PER-CARD ACCENT COLOR SLOTS 1–40
+     👉 --color-N      = circle border, hover fill start, btn text
+     👉 --color-N-end  = hover fill gradient end
+     👉 Pattern: 20 unique colors across slots 1–20,
+        then slots 21–40 repeat the same 20 colors so the
+        visual rhythm stays consistent for very long menus.
+     👉 No two adjacent slots share the same hue family.
+
+     COLOR MAP:
+      1 Gold        2 Sienna      3 Sage        4 Teal        5 Rose
+      6 Amber       7 Forest      8 Indigo      9 Crimson    10 Olive
+     11 Copper      12 Pine       13 Violet     14 Burgundy  15 Mustard
+     16 Slate       17 Rust       18 Moss       19 Plum      20 Ochre
+     21–40 repeat the same sequence as 1–20
+  ========================================================= */
+
+  /* ── Slots 1–5 (original colors) ───────────────────── */
+  --color-1: var(--gold);
+  --color-1-end: var(--gold-bright);
+  --color-2: var(--sienna);
+  --color-2-end: var(--sienna-light);
+  --color-3: var(--sage);
+  --color-3-end: var(--sage-light);
+  --color-4: var(--teal);
+  --color-4-end: var(--teal-light);
+  --color-5: var(--rose);
+  --color-5-end: var(--rose-light);
+
+  /* ── Slots 6–10 (5 new colors — no repeat of 1–5) ─── */
+  /* 👉 CHANGED: was repeating gold/sienna/sage/teal/rose */
+  --color-6: var(--amber);
+  --color-6-end: var(--amber-light);
+  --color-7: var(--forest);
+  --color-7-end: var(--forest-light);
+  --color-8: var(--indigo);
+  --color-8-end: var(--indigo-light);
+  --color-9: var(--crimson);
+  --color-9-end: var(--crimson-light);
+  --color-10: var(--olive);
+  --color-10-end: var(--olive-light);
+
+  /* ── Slots 11–15 (5 more new colors) ───────────────── */
+  /* 👉 NEW: added copper/pine/violet/burgundy/mustard */
+  --color-11: var(--copper);
+  --color-11-end: var(--copper-light);
+  --color-12: var(--pine);
+  --color-12-end: var(--pine-light);
+  --color-13: var(--violet);
+  --color-13-end: var(--violet-light);
+  --color-14: var(--burgundy);
+  --color-14-end: var(--burgundy-light);
+  --color-15: var(--mustard);
+  --color-15-end: var(--mustard-light);
+
+  /* ── Slots 16–20 (5 more new colors) ───────────────── */
+  /* 👉 NEW: added slate/rust/moss/plum/ochre */
+  --color-16: var(--slate);
+  --color-16-end: var(--slate-light);
+  --color-17: var(--rust);
+  --color-17-end: var(--rust-light);
+  --color-18: var(--moss);
+  --color-18-end: var(--moss-light);
+  --color-19: var(--plum);
+  --color-19-end: var(--plum-light);
+  --color-20: var(--ochre);
+  --color-20-end: var(--ochre-light);
+
+  /* ── Slots 21–40 (repeat of 1–20 for longer menus) ── */
+  /* 👉 NEW: entire block added for cards 21–40 */
+  --color-21: var(--gold);
+  --color-21-end: var(--gold-bright);
+  --color-22: var(--sienna);
+  --color-22-end: var(--sienna-light);
+  --color-23: var(--sage);
+  --color-23-end: var(--sage-light);
+  --color-24: var(--teal);
+  --color-24-end: var(--teal-light);
+  --color-25: var(--rose);
+  --color-25-end: var(--rose-light);
+  --color-26: var(--amber);
+  --color-26-end: var(--amber-light);
+  --color-27: var(--forest);
+  --color-27-end: var(--forest-light);
+  --color-28: var(--indigo);
+  --color-28-end: var(--indigo-light);
+  --color-29: var(--crimson);
+  --color-29-end: var(--crimson-light);
+  --color-30: var(--olive);
+  --color-30-end: var(--olive-light);
+  --color-31: var(--copper);
+  --color-31-end: var(--copper-light);
+  --color-32: var(--pine);
+  --color-32-end: var(--pine-light);
+  --color-33: var(--violet);
+  --color-33-end: var(--violet-light);
+  --color-34: var(--burgundy);
+  --color-34-end: var(--burgundy-light);
+  --color-35: var(--mustard);
+  --color-35-end: var(--mustard-light);
+  --color-36: var(--slate);
+  --color-36-end: var(--slate-light);
+  --color-37: var(--rust);
+  --color-37-end: var(--rust-light);
+  --color-38: var(--moss);
+  --color-38-end: var(--moss-light);
+  --color-39: var(--plum);
+  --color-39-end: var(--plum-light);
+  --color-40: var(--ochre);
+  --color-40-end: var(--ochre-light);
+}
+
+/* =========================================================
+   GLOBAL RESET
+========================================================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Outfit", sans-serif;
+}
+
+/* =========================================================
+   BODY — dark olive-black with grain texture + gold glow
+========================================================= */
+body {
+  background-color: var(--bg-deep);
+  color: var(--text-warm);
+  min-height: 100vh;
+  position: relative;
+  cursor: default;
+}
+
+/* Film-grain texture — overlay blend works on dark bg */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  background-size: 160px;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.35;
+  mix-blend-mode: overlay;
+}
+
+/* Ambient radial gold glow — subtle warm light from top center */
+body::after {
+  content: "";
+  position: fixed;
+  top: -30%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80vw;
+  height: 80vw;
+  background: radial-gradient(ellipse, rgba(240, 176, 48, 0.10) 0%, transparent 65%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* =========================================================
+   FILTER TABS BAR
+   👉 Sticky at top, frosted dark backdrop
+   👉 Inactive tabs: outlined with faint gold border
+   👉 Active tab: filled solid gold, dark text
+========================================================= */
+.filter-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 16px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  background: rgba(26, 22, 0, 0.93);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(240, 176, 48, 0.2);
+}
+
+.filter-tab {
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--text-dim);
+  background: transparent;
+  border: 1px solid rgba(240, 176, 48, 0.2);
+  padding: 7px 22px;
+  border-radius: 30px;
+  cursor: pointer;
+  letter-spacing: 1.2px;
+  text-transform: capitalize;
+  /* 👉 "Breakfast" style, not "BREAKFAST" */
+  transition: var(--transition);
+  white-space: nowrap;
+}
+
+.filter-tab:hover {
+  color: var(--text-warm);
+  border-color: var(--gold);
+  background: rgba(240, 176, 48, 0.06);
+}
+
+/* Active tab — solid gold pill, very dark text for contrast */
+.filter-tab.active {
+  color: #1a1600;
+  /* 👉 Dark olive so text readable on gold */
+  background: var(--gold);
+  border-color: var(--gold);
+  font-weight: 700;
+}
+
+/* =========================================================
+   NAVBAR / BTN-GROUP ALIASES
+   👉 Restaurant.jsx uses .navbar + .btn-group + .btn-group__item
+      class names. These rules mirror .filter-bar / .filter-tab
+      exactly so both naming patterns produce identical styles.
+   👉 Safe to delete this block if JSX is updated to use
+      .filter-bar / .filter-tab directly.
+========================================================= */
+
+/* .navbar — sticky frosted dark bar (same as .filter-bar) */
+.navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 16px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  background: rgba(26, 22, 0, 0.93);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(240, 176, 48, 0.2);
+}
+
+/* .btn-group — flex row wrapper for pill buttons */
+.btn-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  /* 👉 Same gap between pills as .filter-bar */
+}
+
+/* .btn-group__item — outlined gold pill (same as .filter-tab) */
+.btn-group__item {
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--text-dim);
+  background: transparent;
+  border: 1px solid rgba(240, 176, 48, 0.2);
+  padding: 7px 22px;
+  border-radius: 30px;
+  /* 👉 Full pill shape */
+  cursor: pointer;
+  letter-spacing: 1.2px;
+  text-transform: capitalize;
+  /* 👉 "Breakfast" not "BREAKFAST" */
+  transition: var(--transition);
+  white-space: nowrap;
+}
+
+/* Hover — gold border + faint gold bg tint */
+.btn-group__item:hover {
+  color: var(--text-warm);
+  border-color: var(--gold);
+  background: rgba(240, 176, 48, 0.06);
+}
+
+/* Active — solid gold fill, dark text for contrast */
+/* 👉 Add class "active" to the selected button in JSX */
+.btn-group__item.active {
+  color: #1a1600;
+  /* 👉 Dark olive — readable on gold bg */
+  background: var(--gold);
+  border-color: var(--gold);
+  font-weight: 700;
+}
+
+/* =========================================================
+   MAIN CONTAINER
+   👉 Full-width flex column — filter bar stacks above card grid
+========================================================= */
+.main-container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* =========================================================
+   CARD CONTAINER GRID
+   👉 Cards sit side-by-side in rows of 3
+   👉 align-items: stretch — all cards in a row = same height
+   👉 flex-wrap: wrap — overflows to next row automatically
+========================================================= */
+.card-container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+  align-items: stretch;
+  /* 👉 KEY: equal height per row */
+  padding: 40px;
+  max-width: 1280px;
+}
+
+/* =========================================================
+   SINGLE CARD — EDITORIAL FULL-PAGE MODE
+   👉 Fires when exactly 1 card is inside .card-container
+   👉 Expands to full viewport, no border/shadow
+========================================================= */
+.card-container .card:only-child {
+  max-width: 100%;
+  width: 100%;
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+  background: transparent;
+  padding: 52px 80px 80px;
+  cursor: default;
+  min-height: 100vh;
+  flex-direction: column;
+  position: relative;
+  overflow: visible;
+  /* 👉 CRITICAL — never clip italic descenders */
+}
+
+.card-container .card:only-child:hover {
+  transform: none;
+  box-shadow: none;
+  border-color: transparent;
+}
+
+/* Giant faint decorative numeral behind editorial title */
+.card-container .card:only-child::before {
+  content: var(--card-bg-num, "1");
+  position: absolute;
+  top: -8%;
+  right: -2%;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(200px, 38vw, 480px);
+  font-weight: 700;
+  font-style: italic;
+  color: var(--gold);
+  opacity: 0.05;
+  line-height: 1;
+  pointer-events: none;
+  z-index: 0;
+  letter-spacing: -10px;
+}
+
+/* Thin gold rule across top of editorial card */
+.card-container .card:only-child::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0.45;
+}
+
+/* =========================================================
+   INDIVIDUAL CARD (grid mode)
+   👉 display: flex + flex-direction: column — footer always
+      pinned to bottom regardless of content length
+   👉 overflow: hidden — clips image to rounded corners
+   👉 animation: staggered entrance fade-in from below
+========================================================= */
+.card {
+  width: 100%;
+  max-width: 380px;
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid rgba(240, 176, 48, 0.15);
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  /* 👉 Stack topbar → content → read → img → footer */
+  position: relative;
+  animation: cardEntrance 0.7s var(--transition) both;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--card-color, var(--gold));
+}
+
+/* =========================================================
+   PER-CARD UNIQUE ACCENT COLORS — nth-child 1 through 40
+   👉 --card-color      : circle border, hover fill start, btn text
+   👉 --card-color-end  : hover fill gradient end
+   👉 --card-bg-num     : decorative numeral string in editorial mode
+   👉 animation-delay   : staggered entrance, 0.05s apart per card
+
+   FULL COLOR SEQUENCE (20 unique, repeats at 21):
+    1  Gold         2  Sienna       3  Sage         4  Teal         5  Rose
+    6  Amber        7  Forest       8  Indigo        9  Crimson     10  Olive
+   11  Copper      12  Pine        13  Violet       14  Burgundy   15  Mustard
+   16  Slate       17  Rust        18  Moss         19  Plum       20  Ochre
+   21  Gold        22  Sienna  ... (repeats 1–20)
+========================================================= */
+
+/* ── Cards 1–5 ─────────────────────────────────────── */
+.card:nth-child(1) {
+  --card-color: var(--color-1);
+  --card-color-end: var(--color-1-end);
+  --card-bg-num: "1";
+  animation-delay: 0.05s;
+}
+
+.card:nth-child(2) {
+  --card-color: var(--color-2);
+  --card-color-end: var(--color-2-end);
+  --card-bg-num: "2";
+  animation-delay: 0.10s;
+}
+
+.card:nth-child(3) {
+  --card-color: var(--color-3);
+  --card-color-end: var(--color-3-end);
+  --card-bg-num: "3";
+  animation-delay: 0.15s;
+}
+
+.card:nth-child(4) {
+  --card-color: var(--color-4);
+  --card-color-end: var(--color-4-end);
+  --card-bg-num: "4";
+  animation-delay: 0.20s;
+}
+
+.card:nth-child(5) {
+  --card-color: var(--color-5);
+  --card-color-end: var(--color-5-end);
+  --card-bg-num: "5";
+  animation-delay: 0.25s;
+}
+
+/* ── Cards 6–10 — 👉 CHANGED: amber/forest/indigo/crimson/olive (was repeating 1–5) */
+.card:nth-child(6) {
+  --card-color: var(--color-6);
+  --card-color-end: var(--color-6-end);
+  --card-bg-num: "6";
+  animation-delay: 0.30s;
+}
+
+.card:nth-child(7) {
+  --card-color: var(--color-7);
+  --card-color-end: var(--color-7-end);
+  --card-bg-num: "7";
+  animation-delay: 0.35s;
+}
+
+.card:nth-child(8) {
+  --card-color: var(--color-8);
+  --card-color-end: var(--color-8-end);
+  --card-bg-num: "8";
+  animation-delay: 0.40s;
+}
+
+.card:nth-child(9) {
+  --card-color: var(--color-9);
+  --card-color-end: var(--color-9-end);
+  --card-bg-num: "9";
+  animation-delay: 0.45s;
+}
+
+.card:nth-child(10) {
+  --card-color: var(--color-10);
+  --card-color-end: var(--color-10-end);
+  --card-bg-num: "10";
+  animation-delay: 0.50s;
+}
+
+/* ── Cards 11–15 — 👉 NEW: copper/pine/violet/burgundy/mustard */
+.card:nth-child(11) {
+  --card-color: var(--color-11);
+  --card-color-end: var(--color-11-end);
+  --card-bg-num: "11";
+  animation-delay: 0.55s;
+}
+
+.card:nth-child(12) {
+  --card-color: var(--color-12);
+  --card-color-end: var(--color-12-end);
+  --card-bg-num: "12";
+  animation-delay: 0.60s;
+}
+
+.card:nth-child(13) {
+  --card-color: var(--color-13);
+  --card-color-end: var(--color-13-end);
+  --card-bg-num: "13";
+  animation-delay: 0.65s;
+}
+
+.card:nth-child(14) {
+  --card-color: var(--color-14);
+  --card-color-end: var(--color-14-end);
+  --card-bg-num: "14";
+  animation-delay: 0.70s;
+}
+
+.card:nth-child(15) {
+  --card-color: var(--color-15);
+  --card-color-end: var(--color-15-end);
+  --card-bg-num: "15";
+  animation-delay: 0.75s;
+}
+
+/* ── Cards 16–20 — 👉 NEW: slate/rust/moss/plum/ochre */
+.card:nth-child(16) {
+  --card-color: var(--color-16);
+  --card-color-end: var(--color-16-end);
+  --card-bg-num: "16";
+  animation-delay: 0.80s;
+}
+
+.card:nth-child(17) {
+  --card-color: var(--color-17);
+  --card-color-end: var(--color-17-end);
+  --card-bg-num: "17";
+  animation-delay: 0.85s;
+}
+
+.card:nth-child(18) {
+  --card-color: var(--color-18);
+  --card-color-end: var(--color-18-end);
+  --card-bg-num: "18";
+  animation-delay: 0.90s;
+}
+
+.card:nth-child(19) {
+  --card-color: var(--color-19);
+  --card-color-end: var(--color-19-end);
+  --card-bg-num: "19";
+  animation-delay: 0.95s;
+}
+
+.card:nth-child(20) {
+  --card-color: var(--color-20);
+  --card-color-end: var(--color-20-end);
+  --card-bg-num: "20";
+  animation-delay: 1.00s;
+}
+
+/* ── Cards 21–25 — 👉 NEW: second cycle begins, mirrors 1–5 */
+.card:nth-child(21) {
+  --card-color: var(--color-21);
+  --card-color-end: var(--color-21-end);
+  --card-bg-num: "21";
+  animation-delay: 1.05s;
+}
+
+.card:nth-child(22) {
+  --card-color: var(--color-22);
+  --card-color-end: var(--color-22-end);
+  --card-bg-num: "22";
+  animation-delay: 1.10s;
+}
+
+.card:nth-child(23) {
+  --card-color: var(--color-23);
+  --card-color-end: var(--color-23-end);
+  --card-bg-num: "23";
+  animation-delay: 1.15s;
+}
+
+.card:nth-child(24) {
+  --card-color: var(--color-24);
+  --card-color-end: var(--color-24-end);
+  --card-bg-num: "24";
+  animation-delay: 1.20s;
+}
+
+.card:nth-child(25) {
+  --card-color: var(--color-25);
+  --card-color-end: var(--color-25-end);
+  --card-bg-num: "25";
+  animation-delay: 1.25s;
+}
+
+/* ── Cards 26–30 — 👉 NEW: mirrors 6–10 */
+.card:nth-child(26) {
+  --card-color: var(--color-26);
+  --card-color-end: var(--color-26-end);
+  --card-bg-num: "26";
+  animation-delay: 1.30s;
+}
+
+.card:nth-child(27) {
+  --card-color: var(--color-27);
+  --card-color-end: var(--color-27-end);
+  --card-bg-num: "27";
+  animation-delay: 1.35s;
+}
+
+.card:nth-child(28) {
+  --card-color: var(--color-28);
+  --card-color-end: var(--color-28-end);
+  --card-bg-num: "28";
+  animation-delay: 1.40s;
+}
+
+.card:nth-child(29) {
+  --card-color: var(--color-29);
+  --card-color-end: var(--color-29-end);
+  --card-bg-num: "29";
+  animation-delay: 1.45s;
+}
+
+.card:nth-child(30) {
+  --card-color: var(--color-30);
+  --card-color-end: var(--color-30-end);
+  --card-bg-num: "30";
+  animation-delay: 1.50s;
+}
+
+/* ── Cards 31–35 — 👉 NEW: mirrors 11–15 */
+.card:nth-child(31) {
+  --card-color: var(--color-31);
+  --card-color-end: var(--color-31-end);
+  --card-bg-num: "31";
+  animation-delay: 1.55s;
+}
+
+.card:nth-child(32) {
+  --card-color: var(--color-32);
+  --card-color-end: var(--color-32-end);
+  --card-bg-num: "32";
+  animation-delay: 1.60s;
+}
+
+.card:nth-child(33) {
+  --card-color: var(--color-33);
+  --card-color-end: var(--color-33-end);
+  --card-bg-num: "33";
+  animation-delay: 1.65s;
+}
+
+.card:nth-child(34) {
+  --card-color: var(--color-34);
+  --card-color-end: var(--color-34-end);
+  --card-bg-num: "34";
+  animation-delay: 1.70s;
+}
+
+.card:nth-child(35) {
+  --card-color: var(--color-35);
+  --card-color-end: var(--color-35-end);
+  --card-bg-num: "35";
+  animation-delay: 1.75s;
+}
+
+/* ── Cards 36–40 — 👉 NEW: mirrors 16–20 */
+.card:nth-child(36) {
+  --card-color: var(--color-36);
+  --card-color-end: var(--color-36-end);
+  --card-bg-num: "36";
+  animation-delay: 1.80s;
+}
+
+.card:nth-child(37) {
+  --card-color: var(--color-37);
+  --card-color-end: var(--color-37-end);
+  --card-bg-num: "37";
+  animation-delay: 1.85s;
+}
+
+.card:nth-child(38) {
+  --card-color: var(--color-38);
+  --card-color-end: var(--color-38-end);
+  --card-bg-num: "38";
+  animation-delay: 1.90s;
+}
+
+.card:nth-child(39) {
+  --card-color: var(--color-39);
+  --card-color-end: var(--color-39-end);
+  --card-bg-num: "39";
+  animation-delay: 1.95s;
+}
+
+.card:nth-child(40) {
+  --card-color: var(--color-40);
+  --card-color-end: var(--color-40-end);
+  --card-bg-num: "40";
+  animation-delay: 2.00s;
+}
+
+/* =========================================================
+   CARD HEADER — hidden by default
+   👉 Set display: block to restore gradient banner header
+========================================================= */
+.card-header {
+  display: none;
+  background: linear-gradient(135deg, var(--card-color, var(--gold)), var(--card-color-end, var(--gold-bright)));
+  padding: 24px 22px;
+  text-align: center;
+  color: #fff;
+  border-radius: var(--radius) var(--radius) 0 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-header::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -15%;
+  width: 50%;
+  height: 200%;
+  background: rgba(255, 255, 255, 0.1);
+  transform: skewX(-18deg);
+  pointer-events: none;
+  transition: var(--transition);
+}
+
+.card:hover .card-header::after {
+  left: 110%;
+}
+
+.card-container .card:only-child .card-header {
+  display: none;
+}
+
+.card-header h1 {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  color: #fff;
+}
+
+/* =========================================================
+   SECTION 1 — TOP BAR: circle + category label
+   👉 Screenshot: circle on left, category text beside it
+   👉 padding-bottom minimal — title sits close underneath
+========================================================= */
+.card-topbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 18px 8px;
+  flex-shrink: 0;
+}
+
+/* Editorial: circle left, Order Now button right */
+.card-container .card:only-child .card-topbar {
+  justify-content: space-between;
+  padding: 0;
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Left group: circle + label sit side by side */
+.card-left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+/* ── CIRCLE — thin outlined ring ───────────────────────
+   👉 Transparent bg so number is always readable
+   👉 Border color = card's unique accent (--card-color)
+   👉 On card hover: fills with gradient + scales up slightly
+──────────────────────────────────────────────────────── */
+.card-circle {
+  height: 32px;
+  width: 32px;
+  background: transparent;
+  border: 1.5px solid var(--card-color, var(--gold-muted));
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: var(--transition);
+  flex-shrink: 0;
+}
+
+.card:hover .card-circle {
+  background: linear-gradient(135deg,
+      var(--card-color, var(--gold)),
+      var(--card-color-end, var(--gold-bright)));
+  transform: scale(1.08);
+  box-shadow: 0 0 10px rgba(200, 134, 10, 0.25);
+}
+
+/* Editorial circle — slightly larger version */
+.card-container .card:only-child .card-circle {
+  height: 40px;
+  width: 40px;
+  background: transparent;
+  border: 1.5px solid var(--gold-muted);
+}
+
+.card-container .card:only-child .card-circle:hover {
+  transform: none;
+  background: transparent;
+}
+
+/* ── NUMBER INSIDE CIRCLE ───────────────────────────────
+   👉 Bright yellow-gold — pops clearly on dark card bg
+   👉 Turns dark on hover when circle fills with gradient
+──────────────────────────────────────────────────────── */
+.card-number {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--gold-light);
+  /* 👉 Bright — visible on dark bg */
+  transition: var(--transition);
+  line-height: 1;
+}
+
+.card:hover .card-number {
+  color: #1a1600;
+}
+
+/* 👉 Dark on hover when bg fills */
+
+.card-container .card:only-child .card-number {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--gold-light);
+}
+
+/* ── CATEGORY LABEL — "BREAKFAST", "LUNCH" etc. ─────────
+   👉 Muted amber uppercase with wide letter spacing
+   👉 Shifts to card's unique accent color on hover
+──────────────────────────────────────────────────────── */
+.card-author {
+  font-size: 9px;
+  font-weight: 500;
+  color: var(--text-dim);
+  background: none;
+  -webkit-text-fill-color: var(--text-dim);
+  white-space: nowrap;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: block;
+  transition: var(--transition);
+}
+
+.card:hover .card-author {
+  color: var(--card-color, var(--gold));
+  -webkit-text-fill-color: var(--card-color, var(--gold));
+}
+
+/* Editorial category label — wider tracking */
+.card-container .card:only-child .card-author {
+  font-size: 10px;
+  font-weight: 600;
+  background: none;
+  -webkit-background-clip: unset;
+  background-clip: unset;
+  -webkit-text-fill-color: var(--gold-muted);
+  color: var(--gold-muted);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  display: block;
+}
+
+/* =========================================================
+   SECTION 2 & 3 — TITLE + DESCRIPTION
+========================================================= */
+.card-content {
+  padding: 2px 18px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* ── CARD TITLE ─────────────────────────────────────────
+   👉 Cormorant Garamond italic for luxury editorial feel
+   👉 Warm-white → gold gradient visible on dark card bg
+   👉 overflow: visible prevents italic tail (g, y) clipping
+──────────────────────────────────────────────────────── */
+.card-title {
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(28px, 3.8vw, 42px);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.1;
+  letter-spacing: -0.5px;
+  padding-bottom: 0.1em;
+  display: block;
+  overflow: visible;
+  /* 👉 Never clip italic descenders */
+  background: linear-gradient(135deg,
+      var(--text-bright) 10%,
+      var(--gold-light) 55%,
+      var(--gold) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: var(--transition);
+}
+
+/* Editorial title — much larger display size */
+.card-container .card:only-child .card-title {
+  font-size: clamp(56px, 10vw, 120px);
+  font-weight: 300;
+  letter-spacing: -3px;
+  padding-bottom: 0.15em;
+  margin-bottom: 28px;
+  background: linear-gradient(135deg,
+      var(--text-bright) 15%,
+      var(--gold-light) 60%,
+      var(--gold) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ── DESCRIPTION TEXT ───────────────────────────────────
+   👉 Clamped to 3 lines in grid mode — ellipsis after 3rd
+   👉 Full text visible in editorial (only-child) mode
+──────────────────────────────────────────────────────── */
+.card-description {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--text-dim);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  /* 👉 Max 3 lines then "..." */
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Editorial description — full uppercase, wider line-height */
+.card-container .card:only-child .card-description {
+  font-size: 11px;
+  line-height: 2;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: var(--text-warm);
+  /* 👉 Warm yellow-cream — readable on dark */
+  max-width: 380px;
+  display: block;
+  -webkit-line-clamp: unset;
+  line-clamp: unset;
+  overflow: visible;
+}
+
+/* =========================================================
+   SECTION 4 — READ ROW: [——line——] READ
+   👉 Flex row: thin line fills left, READ text on right
+========================================================= */
+.card-read-row {
+  display: flex;
+  align-items: center;
+  padding: 0 18px;
+  margin: 4px 0 12px;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+/* Thin amber line grows to fill all space left of READ */
+.card-read-row::before {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: rgba(240, 176, 48, 0.25);
+}
+
+/* READ text link — bright gold, uppercase tracked */
+.card-read-link {
+  font-size: 9.5px;
+  font-weight: 600;
+  color: var(--gold-light);
+  /* 👉 Bright gold — visible on dark card */
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: var(--transition);
+  white-space: nowrap;
+  background: none;
+  border: none;
+  padding: 0;
+  position: relative;
+}
+
+/* Gold underline sweeps across on hover */
+.card-read-link::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--gold-light);
+  transition: var(--transition);
+}
+
+.card-read-link:hover {
+  color: #fff;
+}
+
+.card-read-link:hover::after {
+  width: 100%;
+}
+
+/* =========================================================
+   SECTION 5 — FOOD IMAGE
+   👉 flex-grow: 1 — image fills ALL remaining card height
+      so every card in a row ends up the same total height
+   👉 min-height / max-height — prevents extreme sizes
+   👉 object-fit: cover — always fills the box, no letterbox
+========================================================= */
+.card-img-wrap {
+  width: 100%;
+  flex-grow: 1;
+  /* 👉 KEY: stretches to fill remaining space */
+  min-height: 180px;
+  /* 👉 Never shrinks below this */
+  max-height: 260px;
+  /* 👉 Never grows above this */
+  overflow: hidden;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.card-img-wrap img,
+.card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.6s ease;
+}
+
+/* Subtle zoom on card hover */
+.card:hover .card-img-wrap img,
+.card:hover .card-img {
+  transform: scale(1.04);
+}
+
+/* =========================================================
+   SECTION 6 — FOOTER: price + Order Now button
+   👉 justify-content: flex-end pushes button to right
+   👉 bg slightly darker than card body for visual separation
+========================================================= */
+.card-footer {
+  padding: 10px 16px;
+  display: flex;
+  justify-content: flex-end;
+  /* 👉 "Order Now" sits on right */
+  align-items: center;
+  background: var(--bg-card-alt);
+  border-top: 1px solid rgba(240, 176, 48, 0.1);
+  border-radius: 0 0 var(--radius) var(--radius);
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+/* Editorial footer — transparent, left-aligned */
+.card-container .card:only-child .card-footer {
+  margin-top: 24px;
+  padding: 0;
+  justify-content: flex-start;
+  background: transparent;
+  border-top: none;
+  border-radius: 0;
+  max-width: 320px;
+  gap: 20px;
+}
+
+/* Generic footer link/button styles */
+.card-footer a,
+.card-footer button {
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--card-color, var(--gold-muted));
+  background: none;
+  border: none;
+  cursor: pointer;
+  letter-spacing: 1px;
+  transition: var(--transition);
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: 30px;
+}
+
+/* Editorial READ link in footer */
+.card-container .card:only-child .card-footer a,
+.card-container .card:only-child .card-footer button {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--gold-light);
+  /* 👉 Bright gold — visible on dark bg */
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  padding: 0;
+  border-radius: 0;
+  position: relative;
+}
+
+.card-container .card:only-child .card-footer a::after,
+.card-container .card:only-child .card-footer button::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--gold);
+  transition: var(--transition);
+}
+
+.card-container .card:only-child .card-footer a:hover,
+.card-container .card:only-child .card-footer button:hover {
+  color: var(--gold);
+}
+
+.card-container .card:only-child .card-footer a:hover::after,
+.card-container .card:only-child .card-footer button:hover::after {
+  width: 100%;
+}
+
+/* ── ORDER NOW BUTTON ───────────────────────────────────
+   👉 Outlined pill at rest — card accent color text + border
+   👉 On hover: accent gradient floods in from left (::before)
+   👉 .btn-order span — z-index: 1 keeps text above the fill
+──────────────────────────────────────────────────────── */
+.btn-order {
+  font-size: 9.5px;
+  font-weight: 600;
+  color: var(--gold-light);
+  /* 👉 Bright gold — visible on dark */
+  background: transparent;
+  border: 1px solid rgba(240, 176, 48, 0.35);
+  padding: 6px 16px;
+  border-radius: 30px;
+  cursor: pointer;
+  letter-spacing: 1px;
+  text-transform: capitalize;
+  /* 👉 "Order Now" style */
+  transition: var(--transition);
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Gradient fill sweeps from left on hover */
+.btn-order::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg,
+      var(--card-color, var(--gold)),
+      var(--card-color-end, var(--gold-bright)));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: var(--transition);
+  border-radius: 30px;
+  z-index: 0;
+}
+
+.btn-order span {
+  position: relative;
+  z-index: 1;
+}
+
+/* 👉 Text above fill */
+.btn-order:hover {
+  color: #ffffff;
+  border-color: var(--card-color, var(--gold));
+}
+
+.btn-order:hover::before {
+  transform: scaleX(1);
+}
+
+/* Editorial ORDER NOW button — larger + wider spacing */
+.card-container .card:only-child .btn-order {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--gold-light);
+  border: 1px solid var(--gold-muted);
+  padding: 11px 28px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.card-container .card:only-child .btn-order:hover {
+  color: #ffffff;
+}
+
+.card-container .card:only-child .btn-order::before {
+  background: linear-gradient(135deg, var(--gold), var(--gold-bright));
+}
+
+/* ── BACKWARD COMPAT: .card-body ───────────────────────
+   👉 If JSX uses .card-body instead of .card-topbar,
+      this prevents layout from breaking
+──────────────────────────────────────────────────────── */
+.card-body {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 18px 8px;
+  flex-shrink: 0;
+  background: transparent;
+}
+
+.card-container .card:only-child .card-body {
+  justify-content: space-between;
+  padding: 0;
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+/* =========================================================
+   EDITORIAL CONTENT ROW — title left, description right
+   👉 Used in editorial mode only (not needed for grid cards)
+========================================================= */
+.card-content-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 48px;
+  position: relative;
+  z-index: 1;
+}
+
+/* =========================================================
+   MISC UTILITIES
+========================================================= */
+.card-divider {
+  width: calc(100% - 36px);
+  margin: 0 18px;
+  border: none;
+  border-top: 1px solid rgba(240, 176, 48, 0.12);
+}
+
+/* .subtle — small muted uppercase label, used for price etc. */
+.subtle {
+  font-size: 10px;
+  color: var(--text-dim);
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.card-footer .btn-primary {
+  background: linear-gradient(135deg,
+      var(--card-color, var(--gold)),
+      var(--card-color-end, var(--gold-bright)));
+  color: #ffffff;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  box-shadow: 0 4px 14px rgba(80, 50, 5, 0.18);
+  padding: 8px 18px;
+}
+
+.card-footer .btn-primary:hover {
+  opacity: 0.88;
+  transform: scale(1.04);
+}
+
+.card-footer a:hover {
+  opacity: 0.75;
+}
+
+/* =========================================================
+   ENTRANCE ANIMATION — staggered fade + rise on load
+   👉 Each card has a different animation-delay (set above)
+      so they appear one after another, not all at once
+========================================================= */
+@keyframes cardEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================================================
+   RESPONSIVE — MOBILE (768px and below)
+========================================================= */
+@media (max-width: 768px) {
+
+  /* Both navbar aliases and filter-bar collapse on mobile */
+  .filter-bar,
+  .navbar {
+    gap: 4px;
+    padding: 10px 12px;
+  }
+
+  /* Both pill aliases shrink on mobile */
+  .filter-tab,
+  .btn-group__item {
+    padding: 6px 14px;
+    font-size: 10px;
+  }
+
+  .card-container {
+    padding: 24px 16px;
+    gap: 16px;
+  }
+
+  .card {
+    max-width: 96%;
+  }
+
+  .card-container .card:only-child {
+    padding: 36px 24px 60px;
+  }
+
+  .card-title {
+    font-size: clamp(24px, 8vw, 36px);
+  }
+
+  .card-container .card:only-child .card-title {
+    font-size: clamp(44px, 14vw, 80px);
+    letter-spacing: -1.5px;
+  }
+
+  .card-content-row {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .card-container .card:only-child .card-description {
+    max-width: 100%;
+  }
+
+  .card-container .card:only-child .card-body,
+  .card-container .card:only-child .card-topbar {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .card-img-wrap {
+    min-height: 160px;
+    max-height: 220px;
+  }
+
+  .card-container .card:only-child::before {
+    font-size: clamp(130px, 45vw, 220px);
+    opacity: 0.04;
+  }
+}
