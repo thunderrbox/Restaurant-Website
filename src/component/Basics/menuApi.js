@@ -359,5 +359,14 @@ const Menu = [
     description:
       "Club sandwich is a hearty lunch option with layers of bread, chicken, bacon, lettuce, and tomato. Its satisfying combination of flavors makes it a popular midday meal.",
   },
+  {
+    id: 41,
+    image: "images/club-sandwich.png",
+    name: "Club Sandwich",
+    category: "rana",
+    price: 60,
+    description:
+      "Club sandwich is a hearty lunch option with layers of bread, chicken, bacon, lettuce, and tomato. Its satisfying combination of flavors makes it a popular midday meal.",
+  },
 ];
 export default Menu;
