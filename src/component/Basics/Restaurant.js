@@ -13,7 +13,7 @@ const uniquelist = [
       return curElem.category;
     }),
   ),
-  "ALL",
+  "All",
 ];
 console.log(uniquelist);
 const Restaurant = () => {
@@ -23,7 +23,7 @@ const Restaurant = () => {
   const [menuList, setmenuList] = React.useState(uniquelist);
 
   // Tracks which button is active so we can highlight it with CSS
-  const [activeCategory, setActiveCategory] = React.useState("all");
+  const [activeCategory, setActiveCategory] = React.useState("All");
 
   // ─────────────────────────────────────────────────────────────
   // filteritem — filters the Menu array by category
@@ -31,7 +31,7 @@ const Restaurant = () => {
   // FIX 1: Original code passed "All" as category and tried
   //   to match it against Menu items — but no item has category
   //   "All", so it returned an empty array and cards disappeared.
-  //   Fix: "all" is treated as a special case that resets to full Menu.
+  //   Fix: "All" is treated as a special case that resets to full Menu.
   //
   // FIX 2: Original used "Breakfast" (capital B) but Menu data
   //   has category: "breakfast" (lowercase). Case mismatch meant
@@ -42,7 +42,7 @@ const Restaurant = () => {
     // Mark the clicked button as active for CSS highlight
     setActiveCategory(category);
 
-    if (category === "all") {
+    if (category === "All") {
       // "All" button clicked — show every item from the original Menu
       setMenuData(Menu);
     } else {

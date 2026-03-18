@@ -1,0 +1,441 @@
+/* =========================================================
+   GOOGLE FONT IMPORT
+   👉 Matching the restaurant website fonts exactly
+   👉 "Cormorant Garamond" — serif for display text
+   👉 "Outfit" — clean sans for UI text
+========================================================= */
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;0,700;1,300;1,500&family=Outfit:wght@300;400;500;600&display=swap");
+
+/* =========================================================
+   ROOT VARIABLES — SAME RESTAURANT THEME COLORS
+   👉 All colors kept identical to the main restaurant CSS
+   👉 Change nothing here — it matches the site palette
+========================================================= */
+:root {
+    /* ── BACKGROUNDS ──────────────────────────────────── */
+    --bg-deep: #0f0e0c;
+    /* Main dark charcoal page background */
+    --bg-card: #1c1a16;
+    /* Card surface */
+    --bg-card-alt: #242018;
+    /* Slightly darker surface */
+
+    /* ── PRIMARY ACCENT: SAFFRON GOLD ────────────────── */
+    --gold: #e8a020;
+    /* Saffron gold */
+    --gold-light: #f5c842;
+    /* Bright gold */
+    --gold-muted: #a06e14;
+    /* Dark muted gold */
+
+    /* ── TEXT ─────────────────────────────────────────── */
+    --text-bright: #f5f0e8;
+    /* Warm near-white */
+    --text-warm: #c8b99a;
+    /* Warm cream */
+    --text-dim: #6e6454;
+    /* Muted text */
+
+    /* ── BUTTON SPARK COLORS ──────────────────────────── */
+    /* 👉 These are the 5 spark/particle colors for .button2 */
+    /* 👉 Change these to adjust the spark burst colors     */
+    --spark-1: #e8a020;
+    /* Gold spark */
+    --spark-2: #f5c842;
+    /* Bright gold spark */
+    --spark-3: #c2420e;
+    /* Sienna spark */
+    --spark-4: #e8622a;
+    /* Orange spark */
+    --spark-5: #f5f0e8;
+    /* Warm white spark */
+
+    /* ── LAYOUT ───────────────────────────────────────── */
+    --transition: 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+    --radius: 16px;
+}
+
+/* =========================================================
+   GLOBAL RESET
+   👉 Outfit is the base font — matches restaurant site
+========================================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Outfit", sans-serif;
+}
+
+/* =========================================================
+   CENTER_DIV — FULL PAGE WRAPPER
+   👉 Dark charcoal background — same as restaurant site body
+   👉 Centers all content vertically and horizontally
+   👉 min-height: 100vh ensures full screen coverage
+   👉 Grain texture overlay via ::before — same as main site
+   👉 Gold ambient glow from top via ::after — same as main site
+========================================================= */
+.center_div {
+    width: 100%;
+    min-height: 100vh;
+    background-color: var(--bg-deep);
+    /* 👉 Same dark charcoal as restaurant site */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 48px;
+    /* 👉 Space between "my data" text and buttons */
+    position: relative;
+    overflow: hidden;
+}
+
+/* ── GRAIN TEXTURE — matches body::before on main site ─
+   👉 Remove entire ::before block for a flat background
+   👉 Change opacity to increase/decrease grain intensity
+──────────────────────────────────────────────────────── */
+.center_div::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+    background-size: 160px;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.6;
+    mix-blend-mode: overlay;
+}
+
+/* ── AMBIENT GOLD GLOW — matches body::after on main site
+   👉 Soft radial gold light from top center
+   👉 Remove ::after to turn off the ambient glow effect
+──────────────────────────────────────────────────────── */
+.center_div::after {
+    content: "";
+    position: absolute;
+    top: -30%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80vw;
+    height: 80vw;
+    background: radial-gradient(ellipse,
+            rgba(232, 160, 32, 0.08) 0%,
+            transparent 65%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* =========================================================
+   "my data" PARAGRAPH TEXT
+   👉 Cormorant Garamond italic — luxury serif like the titles
+   👉 Gold gradient text — same as .card-title on main site
+   👉 clamp() makes it responsive across screen sizes
+========================================================= */
+.center_div>p {
+    font-family: "Cormorant Garamond", serif;
+    /* 👉 Same serif as card titles */
+    font-size: clamp(32px, 5vw, 56px);
+    /* 👉 Responsive text size */
+    font-weight: 300;
+    font-style: italic;
+    letter-spacing: 2px;
+    position: relative;
+    z-index: 1;
+
+    /* Gold gradient text — same gradient as .card-title */
+    background: linear-gradient(135deg,
+            var(--text-bright) 20%,
+            var(--gold-light) 65%,
+            var(--gold) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    /* 👉 Enables gradient on text */
+
+    /* Subtle gold text-shadow glow below the text */
+    filter: drop-shadow(0 4px 24px rgba(232, 160, 32, 0.18));
+}
+
+/* =========================================================
+   BUTTON2 WRAPPER — positions button + its spark particles
+   👉 position: relative is REQUIRED — sparks use absolute
+   👉 display: inline-flex centers the text inside
+========================================================= */
+.button2 {
+    position: relative;
+    /* 👉 Required — sparks position relative to this */
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    /* ── BUTTON VISUAL STYLE ────────────────────────── */
+    padding: 16px 48px;
+    /* 👉 Button click area — top/bottom and sides */
+    font-size: 11px;
+    font-weight: 500;
+    font-family: "Outfit", sans-serif;
+    letter-spacing: 3px;
+    /* 👉 Wide tracking for "HOVER ME" label */
+    text-transform: uppercase;
+    color: var(--gold);
+    /* 👉 Gold text — same as btn-order on main site */
+    cursor: pointer;
+    z-index: 1;
+
+    /* ── BORDER — thin gold outlined pill ───────────── */
+    border: 1px solid var(--gold-muted);
+    /* 👉 Same as .btn-order border style */
+    border-radius: 30px;
+    /* Pill shape */
+    background: transparent;
+    overflow: visible;
+    /* 👉 Sparks overflow outside the button */
+
+    /* ── TRANSITION ─────────────────────────────────── */
+    transition: color 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+/* ── BUTTON GOLD FILL SWEEP ON HOVER ────────────────────
+   👉 Gold floods in from left — same animation as .btn-order
+   👉 Uses ::before pseudo-element for the fill layer
+──────────────────────────────────────────────────────── */
+.button2::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(135deg,
+            var(--gold),
+            var(--gold-light));
+    border-radius: 30px;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    z-index: -1;
+    /* Behind the text label */
+}
+
+/* On hover: gold sweeps in, text turns dark, border glows */
+.button2:hover {
+    color: var(--bg-deep);
+    /* 👉 Dark text on gold background */
+    border-color: var(--gold);
+    box-shadow: 0 8px 32px rgba(232, 160, 32, 0.3),
+        0 0 0 1px rgba(232, 160, 32, 0.15);
+}
+
+.button2:hover::before {
+    transform: scaleX(1);
+    /* Gold sweeps fully across */
+}
+
+/* =========================================================
+   SPARK PARTICLES — the 4 or 5 <span> elements
+   👉 Each <span> is a floating spark/particle
+   👉 Positioned absolutely around the button perimeter
+   👉 On hover: each spark flies outward and fades
+
+   HOW IT WORKS:
+   - Base state: opacity 0, scale 0 (invisible, tiny)
+   - Hover state: opacity 1, scale 1, translate outward
+   - Each nth-child gets unique direction + color + delay
+========================================================= */
+.button2 span {
+    position: absolute;
+    display: block;
+    width: 6px;
+    /* 👉 Spark dot size */
+    height: 6px;
+    border-radius: 50%;
+    /* Circular dot */
+    pointer-events: none;
+    opacity: 0;
+    transform: scale(0);
+    transition: opacity 0.4s ease,
+        transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    z-index: 2;
+}
+
+/* ── SPARK 1 — top-left ────────────────────────────────
+   👉 Color: saffron gold | Direction: top-left diagonal
+──────────────────────────────────────────────────────── */
+.button2 span:nth-child(1) {
+    top: 10%;
+    left: 10%;
+    background: var(--spark-1);
+    /* 👉 Change spark color in :root --spark-1 */
+    box-shadow: 0 0 6px 2px rgba(232, 160, 32, 0.6);
+    transition-delay: 0s;
+}
+
+/* ── SPARK 2 — top-right ───────────────────────────────
+   👉 Color: bright gold | Direction: top-right diagonal
+──────────────────────────────────────────────────────── */
+.button2 span:nth-child(2) {
+    top: 10%;
+    right: 10%;
+    background: var(--spark-2);
+    /* 👉 Change spark color in :root --spark-2 */
+    box-shadow: 0 0 6px 2px rgba(245, 200, 66, 0.6);
+    transition-delay: 0.05s;
+}
+
+/* ── SPARK 3 — bottom-left ─────────────────────────────
+   👉 Color: sienna orange | Direction: bottom-left diagonal
+──────────────────────────────────────────────────────── */
+.button2 span:nth-child(3) {
+    bottom: 10%;
+    left: 10%;
+    background: var(--spark-3);
+    /* 👉 Change spark color in :root --spark-3 */
+    box-shadow: 0 0 6px 2px rgba(194, 66, 14, 0.6);
+    transition-delay: 0.1s;
+}
+
+/* ── SPARK 4 — bottom-right ────────────────────────────
+   👉 Color: bright orange | Direction: bottom-right diagonal
+──────────────────────────────────────────────────────── */
+.button2 span:nth-child(4) {
+    bottom: 10%;
+    right: 10%;
+    background: var(--spark-4);
+    /* 👉 Change spark color in :root --spark-4 */
+    box-shadow: 0 0 6px 2px rgba(232, 98, 42, 0.6);
+    transition-delay: 0.15s;
+}
+
+/* ── SPARK 5 — center-top (5-span button only) ─────────
+   👉 Color: warm white | Direction: straight up
+   👉 Only present in the first button (5 spans)
+──────────────────────────────────────────────────────── */
+.button2 span:nth-child(5) {
+    top: 0%;
+    left: 50%;
+    transform: translateX(-50%) scale(0);
+    background: var(--spark-5);
+    /* 👉 Change spark color in :root --spark-5 */
+    box-shadow: 0 0 8px 3px rgba(245, 240, 232, 0.5);
+    transition-delay: 0.08s;
+    width: 8px;
+    /* 👉 Slightly larger center spark */
+    height: 8px;
+}
+
+/* =========================================================
+   SPARK HOVER STATES — sparks fly outward on button hover
+   👉 translate values control direction and distance
+   👉 Increase translate values for sparks to fly further
+   👉 Change transition-delay for more staggered burst
+========================================================= */
+
+/* Spark 1 flies top-left */
+.button2:hover span:nth-child(1) {
+    opacity: 1;
+    transform: translate(-28px, -28px) scale(1);
+    /* 👉 Fly distance top-left */
+}
+
+/* Spark 2 flies top-right */
+.button2:hover span:nth-child(2) {
+    opacity: 1;
+    transform: translate(28px, -28px) scale(1);
+    /* 👉 Fly distance top-right */
+}
+
+/* Spark 3 flies bottom-left */
+.button2:hover span:nth-child(3) {
+    opacity: 1;
+    transform: translate(-28px, 28px) scale(1);
+    /* 👉 Fly distance bottom-left */
+}
+
+/* Spark 4 flies bottom-right */
+.button2:hover span:nth-child(4) {
+    opacity: 1;
+    transform: translate(28px, 28px) scale(1);
+    /* 👉 Fly distance bottom-right */
+}
+
+/* Spark 5 flies straight up (5-span button only) */
+.button2:hover span:nth-child(5) {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-36px) scale(1.2);
+    /* 👉 Fly up distance */
+}
+
+/* =========================================================
+   SPARK FADE-OUT — sparks fade after mouse leaves
+   👉 On mouse-leave, opacity goes back to 0, scale to 0
+   👉 This is handled automatically by the base .button2 span
+      transition since opacity:0 + scale:0 is the default state
+   👉 transition-delay on hover-out is naturally staggered
+========================================================= */
+
+/* =========================================================
+   DECORATIVE BOTTOM GOLD RULE
+   👉 Thin gold gradient line at very bottom of the page
+   👉 Matches the top gold rule on editorial cards in main site
+   👉 Remove .center_div .gold-rule to hide this element
+========================================================= */
+.gold-rule {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--gold),
+            transparent);
+    opacity: 0.4;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* =========================================================
+   RESPONSIVE — MOBILE (768px and below)
+   👉 Buttons go full-width on small screens
+   👉 Text scales down via clamp automatically
+   👉 Gap reduced for tighter mobile layout
+========================================================= */
+@media (max-width: 768px) {
+    .center_div {
+        gap: 32px;
+        /* 👉 Less gap between elements on mobile */
+        padding: 40px 20px;
+    }
+
+    .button2 {
+        padding: 14px 36px;
+        /* 👉 Slightly smaller buttons on mobile */
+        font-size: 10px;
+        letter-spacing: 2.5px;
+    }
+
+    /* Sparks fly less far on mobile — avoid going off-screen */
+    .button2:hover span:nth-child(1) {
+        transform: translate(-18px, -18px) scale(1);
+    }
+
+    .button2:hover span:nth-child(2) {
+        transform: translate(18px, -18px) scale(1);
+    }
+
+    .button2:hover span:nth-child(3) {
+        transform: translate(-18px, 18px) scale(1);
+    }
+
+    .button2:hover span:nth-child(4) {
+        transform: translate(18px, 18px) scale(1);
+    }
+
+    .button2:hover span:nth-child(5) {
+        transform: translateX(-50%) translateY(-24px) scale(1.2);
+    }
+}
