@@ -2,23 +2,38 @@ import React from "react";
 import "./style.css";
 import Menu from "./menuApi";
 import MenuCard from "./MenuCard";
+import Navbar from "./Navbar";
 
+const uniquelist = [
+  // Set automatically removes duplicates, so we get only unique category values
+  // .map() extracts the category from each menu item to create an array of categories
+  // The spread operator ... converts the Set back into an array so we can use it in our component
+  ...new Set(
+    Menu.map((curElem) => {
+      return curElem.category;
+    }),
+  ),
+  "All",
+];
+console.log(uniquelist);
 const Restaurant = () => {
   // Holds the currently visible menu items — starts with all items
   const [menuData, setMenuData] = React.useState(Menu);
 
+  const [menuList, setmenuList] = React.useState(uniquelist);
+
   // Tracks which button is active so we can highlight it with CSS
-  const [activeCategory, setActiveCategory] = React.useState("all");
+  const [activeCategory, setActiveCategory] = React.useState("All");
 
   // ─────────────────────────────────────────────────────────────
   // filteritem — filters the Menu array by category
   //
-  // BUG FIX 1: Original code passed "All" as category and tried
+  // FIX 1: Original code passed "All" as category and tried
   //   to match it against Menu items — but no item has category
   //   "All", so it returned an empty array and cards disappeared.
-  //   Fix: "all" is treated as a special case that resets to full Menu.
+  //   Fix: "All" is treated as a special case that resets to full Menu.
   //
-  // BUG FIX 2: Original used "Breakfast" (capital B) but Menu data
+  // FIX 2: Original used "Breakfast" (capital B) but Menu data
   //   has category: "breakfast" (lowercase). Case mismatch meant
   //   filter always returned empty array for every category.
   //   Fix: .toLowerCase() on both sides makes comparison case-insensitive.
@@ -27,7 +42,7 @@ const Restaurant = () => {
     // Mark the clicked button as active for CSS highlight
     setActiveCategory(category);
 
-    if (category === "all") {
+    if (category === "All") {
       // "All" button clicked — show every item from the original Menu
       setMenuData(Menu);
     } else {
@@ -42,46 +57,11 @@ const Restaurant = () => {
 
   return (
     <>
-      <nav className="navbar">
-        <div className="btn-group">
-          {/* "all" matches the special case in filteritem that resets full list */}
-          <button
-            className={`btn-group__item ${activeCategory === "all" ? "active" : ""}`}
-            onClick={() => filteritem("all")}
-          >
-            All
-          </button>
-
-          {/* Category strings are lowercase to match Menu data values */}
-          <button
-            className={`btn-group__item ${activeCategory === "breakfast" ? "active" : ""}`}
-            onClick={() => filteritem("breakfast")}
-          >
-            Breakfast
-          </button>
-
-          <button
-            className={`btn-group__item ${activeCategory === "lunch" ? "active" : ""}`}
-            onClick={() => filteritem("lunch")}
-          >
-            Lunch
-          </button>
-
-          <button
-            className={`btn-group__item ${activeCategory === "evening" ? "active" : ""}`}
-            onClick={() => filteritem("evening")}
-          >
-            Evening
-          </button>
-
-          <button
-            className={`btn-group__item ${activeCategory === "dinner" ? "active" : ""}`}
-            onClick={() => filteritem("dinner")}
-          >
-            Dinner
-          </button>
-        </div>
-      </nav>
+      <Navbar
+        filteritem={filteritem}
+        activeCategory={activeCategory}
+        menuList={menuList}
+      />
 
       {/* menuData updates every time filteritem() runs */}
       <MenuCard menuData={menuData} />
